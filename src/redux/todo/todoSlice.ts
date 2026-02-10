@@ -18,14 +18,6 @@ const todoSlice = createSlice({
       });
     },
     toggleTodo: (state, action: PayloadAction<number>) => {
-    //          console.log(state.todos, action.payload, "asdasdad");
-    //   state.todos.map((todo) => {
-    //     if (todo.id === action.payload) {
-    //       return { ...todo, completed: !todo.completed };
-    //     } else {
-    //       return todo;
-    //     }
-    //   });
       const todo = state.todos.find((todo) => todo.id === action.payload);
 
       if (todo) {
