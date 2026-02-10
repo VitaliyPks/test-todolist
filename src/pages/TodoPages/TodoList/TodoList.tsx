@@ -23,8 +23,6 @@ export const TodoList = () => {
     return true;
   });
 
-  if (!filterTodos || !filterTodos.length) return null;
-
   const handleReorder = useCallback(
     (fromIndex: number, toIndex: number) => {
       reorderTodos({ fromIndex, toIndex });
@@ -40,6 +38,8 @@ export const TodoList = () => {
     handleDragStart,
     handleDragLeave,
   } = useDragAndDrop(handleReorder);
+
+  if (!filterTodos || !filterTodos.length) return null;
 
   return (
     <div className={base}>
