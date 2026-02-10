@@ -1,0 +1,32 @@
+@use "../../../assets/styles/variables.scss" as *;
+
+.input {
+  width: 100%;
+
+  textarea {
+    resize: none;
+    border: none;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 12px;
+    padding: 10px 12px;
+    background-color: $page;
+    outline: 1px solid $secondary;
+    color: $text-dark;
+
+    &::placeholder {
+      color: $text-gray;
+    }
+
+    &:hover {
+      outline: 1px solid $border-secondary;
+    }
+
+    &:focus {
+      outline: 1px solid $border-secondary;
+    }
+  }
+}
