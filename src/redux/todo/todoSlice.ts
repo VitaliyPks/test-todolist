@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { TFilterType, TTodoState } from "types/todo";
 
+import { loadTodos } from "@redux/todo/todoHelpers";
+
 const initialState: TTodoState = {
-  todos: [],
+  todos: loadTodos(),
   filter: "all",
 };
 
