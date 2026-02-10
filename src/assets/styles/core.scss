@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use "variables" as *;
 
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
@@ -15,7 +15,7 @@ html {
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 ::-webkit-scrollbar,

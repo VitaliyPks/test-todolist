@@ -37,6 +37,15 @@ const todoSlice = createSlice({
         todo.text = action.payload.text.trim();
       }
     },
+    reorderTodos: (
+      state,
+      action: PayloadAction<{ fromIndex: number; toIndex: number }>,
+    ) => {
+      const { fromIndex, toIndex } = action.payload;
+      const [movedTodo] = state.todos.splice(fromIndex, 1);
+
+      state.todos.splice(toIndex, 0, movedTodo);
+    },
     setFilter: (state, action: PayloadAction<TFilterType>) => {
       state.filter = action.payload;
     },

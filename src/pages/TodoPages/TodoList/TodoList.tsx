@@ -1,9 +1,14 @@
-import useAppSelector from "hooks/useAppSelector";
+import { useCallback } from "react";
 
-import { TodoItem } from "../TodoItem";
+import { useDragAndDrop } from "hooks/useDragAndDrop";
+import useAppSelector from "hooks/useAppSelector";
+import useActions from "hooks/useActions";
+
+import { TodoItem } from "pages/TodoPages/TodoItem";
 
 export const TodoList = () => {
   const base = "todo-list";
+  const { reorderTodos } = useActions();
   const { todos, filter } = useAppSelector((state) => state.todo);
 
   const filterTodos = todos.filter((todo) => {
@@ -20,10 +25,36 @@ export const TodoList = () => {
 
   if (!filterTodos || !filterTodos.length) return null;
 
+  const handleReorder = useCallback(
+    (fromIndex: number, toIndex: number) => {
+      reorderTodos({ fromIndex, toIndex });
+    },
+    [reorderTodos],
+  );
+
+  const {
+    dragState,
+    handleDrop,
+    handleDragEnd,
+    handleDragOver,
+    handleDragStart,
+    handleDragLeave,
+  } = useDragAndDrop(handleReorder);
+
   return (
     <div className={base}>
       {filterTodos.map((todo) => (
-        <TodoItem todo={todo} key={todo.id} />
+        <TodoItem
+          todo={todo}
+          key={todo.id}
+          isDragging={dragState.draggedId === todo.id}
+          isDragOver={dragState.dragOverId === todo.id}
+          onDragStart={(e) => handleDragStart(e, todo.id)}
+          onDragOver={(e) => handleDragOver(e, todo.id)}
+          onDragLeave={handleDragLeave}
+          onDrop={(e) => handleDrop(e, todo.id, filterTodos)}
+          onDragEnd={handleDragEnd}
+        />
       ))}
     </div>
   );

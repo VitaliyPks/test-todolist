@@ -1,14 +1,46 @@
+@use "../../../assets/styles/variables.scss" as *;
+
 .todo-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 12px 0px;
   gap: 8px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-secondary;
+  }
+
+  &.dragging {
+    opacity: 0.8;
+    transform: scale(1.05);
+    z-index: 100;
+    cursor: grabbing;
+  }
+
+  &.dragOver {
+    transform: translateX(10px);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: $secondary;
+    }
+  }
 
   &__content {
     display: flex;
     align-items: center;
     width: 100%;
     gap: 8px;
+  }
+
+  &__text {
+    word-break: break-all;
   }
 
   &__edit-container {
@@ -35,5 +67,30 @@
   &__btn {
     width: fit-content !important;
     padding: 8px 6px !important;
+  }
+
+  @media (max-width: 764px) {
+    align-items: initial;
+
+    &__content {
+      align-items: initial;
+    }
+
+    &__edit-actions {
+      flex-direction: column;
+    }
+
+    &__edit-btn {
+      box-sizing: border-box;
+    }
+
+    &__actions {
+      flex-direction: column;
+    }
+
+    &__btn {
+      width: 100% !important;
+      box-sizing: border-box;
+    }
   }
 }

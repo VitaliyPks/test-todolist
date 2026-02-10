@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import classNames from "classnames";
 
 import { CheckBox } from "components/base/CheckBox";
@@ -13,9 +13,25 @@ import { TTodo } from "types/todo";
 
 interface TodoItemProps {
   todo: TTodo;
+  isDragging?: boolean;
+  isDragOver?: boolean;
+  onDrop?: (e: React.DragEvent) => void;
+  onDragEnd?: (e: React.DragEvent) => void;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDragStart?: (e: React.DragEvent) => void;
+  onDragLeave?: (e: React.DragEvent) => void;
 }
 
-export const TodoItem = ({ todo }: TodoItemProps) => {
+export const TodoItem = ({
+  todo,
+  onDrop,
+  onDragEnd,
+  onDragOver,
+  onDragStart,
+  onDragLeave,
+  isDragging = false,
+  isDragOver = false,
+}: TodoItemProps) => {
   const base = "todo-item";
   const inputRef = useRef<HTMLInputElement>(null);
   const { toggleTodo, deleteTodo, editTodo } = useActions();
@@ -35,7 +51,19 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
   });
 
   return (
-    <div className={classNames(base, { completed: todo.completed })}>
+    <div
+      className={classNames(base, {
+        completed: todo.completed,
+        dragging: isDragging,
+        dragOver: isDragOver,
+      })}
+      draggable={!isEditing}
+      onDragStart={onDragStart}
+      onDragOver={onDragOver}
+      onDragLeave={onDragLeave}
+      onDrop={onDrop}
+      onDragEnd={onDragEnd}
+    >
       <div className={`${base}__content`}>
         <CheckBox
           checked={todo.completed}
