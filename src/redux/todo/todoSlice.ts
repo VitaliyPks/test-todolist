@@ -30,6 +30,13 @@ const todoSlice = createSlice({
     deleteTodo: (state, action: PayloadAction<number>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
+    editTodo: (state, action: PayloadAction<{ id: number; text: string }>) => {
+      const todo = state.todos.find((todo) => todo.id === action.payload.id);
+
+      if (todo) {
+        todo.text = action.payload.text.trim();
+      }
+    },
     setFilter: (state, action: PayloadAction<TFilterType>) => {
       state.filter = action.payload;
     },

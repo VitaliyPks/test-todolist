@@ -7,14 +7,33 @@
   &__content {
     display: flex;
     align-items: center;
+    width: 100%;
     gap: 8px;
   }
 
+  &__edit-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+
+  &__edit-actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__edit-btn {
+    padding: 8px 10px !important;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 4px;
+  }
+
   &__btn {
-    &-delete {
-      width: fit-content !important;
-      padding: 8px 6px !important;
-      float: right;
-    }
+    width: fit-content !important;
+    padding: 8px 6px !important;
   }
 }
