@@ -4,7 +4,8 @@ import React, { HTMLAttributes } from "react";
 interface props extends HTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   type?: "button" | "submit" | "reset";
-  mode?: "error";
+  mode?: "error" | "green-transparent";
+  disabled?: boolean;
 }
 
 const Button = ({ children, mode, ...rest }: props) => {

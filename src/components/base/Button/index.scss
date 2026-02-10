@@ -25,4 +25,19 @@
       background-color: $red-light;
     }
   }
+
+  &.green-transparent {
+    color: $accent;
+    background-color: transparent;
+    outline: 1px solid $gray;
+
+    &:hover {
+      background-color: $gray;
+    }
+  }
+
+  &:disabled {
+    cursor: default;
+    background-color: $gray;
+  }
 }

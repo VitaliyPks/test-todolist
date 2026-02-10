@@ -26,7 +26,9 @@ export const TodoForm = () => {
         onChange={(e) => setText(e.target.value)}
         placeholder="Новая задача..."
       />
-      <Button type="submit">Добавить</Button>
+      <Button disabled={!text.length} type="submit">
+        Добавить
+      </Button>
     </form>
   );
 };

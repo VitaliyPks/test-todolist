@@ -4,6 +4,7 @@
 @use "core";
 
 // Components
+@use "../../pages/TodoPages/TodoFilter/TodoFilter.scss";
 @use "../../pages/TodoPages/TodoList/TodoList.scss";
 @use "../../pages/TodoPages/TodoForm/TodoForm.scss";
 @use "../../pages/TodoPages/TodoItem/TodoItem.scss";
